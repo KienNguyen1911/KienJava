@@ -75,8 +75,8 @@ public class Main {
                                 break;
                             }
                             case 6:
-                                check = false;
-                                break;
+                                System.exit(0);
+                                break;      
                             default: {
                                 System.out.println("Nhap sai, nhap lai: ");
                                 break;
@@ -130,7 +130,7 @@ public class Main {
                                 break;
                             }
                             case 6:
-                                check = false;
+                                System.exit(0);
                                 break;
                             default: {
                                 System.out.println("Nhap sai, nhap lai: ");
@@ -168,7 +168,7 @@ public class Main {
                                 break;
                             }
                             case 3:
-                                check = false;
+                                System.exit(0);
                                 break;
                             default: {
                                 System.out.println("Nhap sai, nhap lai: ");

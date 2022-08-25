@@ -11,9 +11,10 @@ public class Bill {
 	private String phone;
 	private Date saledDate;
 	private Staff branch;
-	private List<Product> product;
+	private ArrayList<Product> product;
+
     public Bill(String idBill, Double total, String customerName, String phone, Date saledDate, Staff branch,
-            List<Product> product) {
+            ArrayList<Product> product) {
         this.idBill = idBill;
         this.total = total;
         this.customerName = customerName;
@@ -22,6 +23,7 @@ public class Bill {
         this.branch = branch;
         this.product = product;
     }
+
     public String getIdBill() {
         return idBill;
     }
@@ -58,10 +60,10 @@ public class Bill {
     public void setBranch(Staff branch) {
         this.branch = branch;
     }
-    public List<Product> getProduct() {
+    public ArrayList<Product> getProduct() {
         return product;
     }
-    public void setProduct(List<Product> product) {
+    public void setProduct(ArrayList<Product> product) {
         this.product = product;
     }
     public Bill() {

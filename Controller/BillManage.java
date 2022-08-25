@@ -146,25 +146,27 @@ public class BillManage implements IService<Bill, Product> {
     @Override
     public void viewAll(ArrayList<Bill> list, ArrayList<Product> list2) {
         // TODO Auto-generated method stub
-        for (Bill bill : list) {
+        for (int i = 0; i < list.size(); i++) {
             System.out.println("");
             System.out.println("==============================");
-            System.out.println("Ma hoa don: " + bill.getIdBill());
-            System.out.println("Ten khach hang: " + bill.getCustomerName());
-            System.out.println("Ten chi nhanh: " + bill.getBranch().getBranch());
-            System.out.println("San pham: ");
-            for (Product product : bill.getProduct()) {
-                System.out.println("Ma san pham: " + product.getId());
-                System.out.println("Ten san pham: " + product.getName());
-                System.out.println("Gia san pham: " + product.getPrice());
-                System.out.println("So luong san pham: " + product.getQuantity());
-                System.out.println("Ngay nhap san pham: " + product.getDayInsert());
-                System.out.println("Ngay het han san pham: " + product.getExprivate());
-                System.out.println("The loai: " + product.getCategory());
+            System.out.println("Ma hoa don: " + list.get(i).getIdBill());
+            System.out.println("Ten khach hang: " + list.get(i).getCustomerName());
+            System.out.println("Ten chi nhanh: " + list.get(i).getBranch().getBranch());
+            System.out.println("Tong tien: " + list.get(i).getTotal());
+            System.out.println("==============================");
+            System.out.println("");
+            System.out.println("Danh sach san pham: ");
+            for (int j = 0; j < list.get(i).getProduct().size(); j++) {
+                    System.out.println("Ma san pham: " + list.get(i).getProduct().get(j).getId());
+                    System.out.println("Ten san pham: " + list.get(i).getProduct().get(j).getName());
+                    System.out.println("Gia san pham: " + list.get(i).getProduct().get(j).getPrice());
+                    System.out.println("So luong san pham: " + list.get(i).getProduct().get(j).getQuantity());
+                    System.out.println("Ngay nhap san pham: " + list.get(i).getProduct().get(j).getDayInsert());
+                    System.out.println("Ngay het han san pham: " + list.get(i).getProduct().get(j).getExprivate());
+                    System.out.println("The loai: " + list.get(i).getProduct().get(j).getCategory());
+                    System.out.println("==============================");
+                    System.out.println("");
             }
-            System.out.println("Tong tien: " + bill.getTotal());
-            System.out.println("Ngay het han: " + bill.getSaledDate());
-            System.out.println("----------------------------------------------------");
         }
     }
 
