@@ -1,6 +1,7 @@
 package Entity;
 
-import java.text.SimpleDateFormat;
+import java.sql.Date;
+import java.util.*;
 import java.util.List;
 
 public class Bill {
@@ -8,9 +9,19 @@ public class Bill {
 	private Double total;
 	private String customerName;
 	private String phone;
-	private SimpleDateFormat saledDate;
+	private Date saledDate;
 	private Staff branch;
 	private List<Product> product;
+    public Bill(String idBill, Double total, String customerName, String phone, Date saledDate, Staff branch,
+            List<Product> product) {
+        this.idBill = idBill;
+        this.total = total;
+        this.customerName = customerName;
+        this.phone = phone;
+        this.saledDate = saledDate;
+        this.branch = branch;
+        this.product = product;
+    }
     public String getIdBill() {
         return idBill;
     }
@@ -35,10 +46,10 @@ public class Bill {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public SimpleDateFormat getSaledDate() {
+    public Date getSaledDate() {
         return saledDate;
     }
-    public void setSaledDate(SimpleDateFormat saledDate) {
+    public void setSaledDate(Date saledDate) {
         this.saledDate = saledDate;
     }
     public Staff getBranch() {
@@ -62,5 +73,5 @@ public class Bill {
         this.branch = branch;
         this.product = product;
     }
-
+    
 }

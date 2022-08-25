@@ -175,7 +175,9 @@ public class Main {
                                 break;
                             }
                         }
-                        break;
+                        if (check == false) {
+                            break;
+                        }
                     }
                 }
                 // Function Exit

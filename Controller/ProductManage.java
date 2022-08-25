@@ -1,5 +1,6 @@
 package Controller;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ public class ProductManage implements IAction<Product> {
     public Product add(ArrayList<Product> list) {
         // TODO Auto-generated method stub
         Product product = new Product();
+
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Nhap ma san pham: ");
@@ -31,17 +33,31 @@ public class ProductManage implements IAction<Product> {
         System.out.println("Nhap so luong san pham: ");
         int quantity = sc.nextInt();
         product.setQuantity(quantity);
+        
+
         System.out.println("Nhap ngay nhap san pham: ");
-        SimpleDateFormat dayInsert = new SimpleDateFormat("dd/MM/yyyy");
-        product.setDayInsert(dayInsert);
+        String dayInsert = sc.nextLine();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date time1 = null;
+        try {
+            time1 = new Date(dateFormat.parse(dayInsert).getTime());
+        } catch (Exception e) {
+        }
+        product.setDayInsert(time1);
+
         System.out.println("Nhap ngay het han san pham: ");
-        SimpleDateFormat exprivate = new SimpleDateFormat("dd/MM/yyyy");
-        product.setExprivate(exprivate);
+        String exprivate = sc.nextLine();
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd/MM/yyyy");
+        Date time2 = null;
+        try {
+            time2 = new Date(dateFormat2.parse(exprivate).getTime());
+        } catch (Exception e) {
+        }
+        product.setExprivate(time2);
+
         System.out.println("Nhap the loai: ");
         String category = sc.nextLine();
         product.setCategory(category);
-
-
 
         list.add(product);
         return product;
@@ -69,12 +85,28 @@ public class ProductManage implements IAction<Product> {
                 System.out.println("Nhap so luong san pham: ");
                 int quantity = sc.nextInt();
                 list.get(i).setQuantity(quantity);
+
                 System.out.println("Nhap ngay nhap san pham: ");
-                SimpleDateFormat dayInsert = new SimpleDateFormat("dd/MM/yyyy");
-                list.get(i).setDayInsert(dayInsert);
+                String dayInsert = sc.nextLine();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                // SimpleDateFormat.parse(dayInsert);
+                Date time1 = null;
+                try {
+                    time1 = new Date(dateFormat.parse(dayInsert).getTime());
+                } catch (Exception e) {
+                }
+                list.get(i).setDayInsert(time1);
                 System.out.println("Nhap ngay het han san pham: ");
-                SimpleDateFormat exprivate = new SimpleDateFormat("dd/MM/yyyy");
-                list.get(i).setExprivate(exprivate);
+                
+                System.out.println("Nhap ngay het han san pham: ");
+                String exprivate = sc.nextLine();
+                SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd/MM/yyyy");
+                Date time2 = null;
+                try {
+                    time2 = new Date(dateFormat2.parse(exprivate).getTime());
+                } catch (Exception e) {}
+                list.get(i).setExprivate(time2);
+
                 System.out.println("Nhap the loai: ");
                 String category = sc.nextLine();
                 list.get(i).setCategory(category);
@@ -135,17 +167,17 @@ public class ProductManage implements IAction<Product> {
     @Override
     public void viewAll(ArrayList<Product> list) {
         // TODO Auto-generated method stub
-        if(list.size() == 0){
+        if (list.size() == 0) {
             System.out.println("Danh sach san pham trong");
         } else {
-            System.out.format("|%10s |%10s |%20s |%20s |%20s |%20s |%n", 
-                            "Ma san pham ", "Ten san pham ", "Gia san pham ", "So luong san pham ", 
-                                    "Ngay nhap san pham ", "Ngay het han san", "The loai");
+            System.out.format("|%10s |%10s |%20s |%20s |%20s |%20s |%n",
+                    "Ma san pham ", "Ten san pham ", "Gia san pham ", "So luong san pham ",
+                    "Ngay nhap san pham ", "Ngay het han san", "The loai");
             for (int i = 0; i < list.size(); i++) {
-                System.out.format("|%10s |%10s |%20s |%20s |%20s |%20s |%n", 
-                                list.get(i).getId(), list.get(i).getName(), list.get(i).getPrice(), 
-                                        list.get(i).getQuantity(), list.get(i).getDayInsert(), 
-                                                list.get(i).getExprivate(), list.get(i).getCategory());
+                System.out.format("|%10s |%10s |%20s |%20s |%20s |%20s |%n",
+                        list.get(i).getId(), list.get(i).getName(), list.get(i).getPrice(),
+                        list.get(i).getQuantity(), list.get(i).getDayInsert(),
+                        list.get(i).getExprivate(), list.get(i).getCategory());
             }
         }
 
