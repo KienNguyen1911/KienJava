@@ -19,7 +19,7 @@ public class ProductManage implements IAction<Product> {
 
         System.out.println("Nhap ma san pham: ");
         String id = sc.nextLine();
-        while (!checkExist(list, id)) {
+        while (checkExist(list, id)) {
             System.out.println("Ma san pham da ton tai, nhap lai: ");
             id = sc.nextLine();
         }
