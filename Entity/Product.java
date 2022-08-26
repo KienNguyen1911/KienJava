@@ -12,6 +12,7 @@ public class Product {
 	private Double price;
 	private String category;
 
+
     public Product(String id, Date dayInsert, String name, int quantity, Date exprivate, Double price,
             String category) {
         this.id = id;

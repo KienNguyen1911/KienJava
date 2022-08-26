@@ -19,7 +19,7 @@ public class ProductManage implements IAction<Product> {
 
         System.out.println("Nhap ma san pham: ");
         String id = sc.nextLine();
-        while (checkExist(list, id)) {
+        while (!checkExist(list, id)) {
             System.out.println("Ma san pham da ton tai, nhap lai: ");
             id = sc.nextLine();
         }
@@ -86,6 +86,7 @@ public class ProductManage implements IAction<Product> {
                 int quantity = sc.nextInt();
                 list.get(i).setQuantity(quantity);
 
+                sc.nextLine();
                 System.out.println("Nhap ngay nhap san pham: ");
                 String dayInsert = sc.nextLine();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -96,7 +97,7 @@ public class ProductManage implements IAction<Product> {
                 } catch (Exception e) {
                 }
                 list.get(i).setDayInsert(time1);
-                System.out.println("Nhap ngay het han san pham: ");
+                // System.out.println("Nhap ngay het han san pham: ");
                 
                 System.out.println("Nhap ngay het han san pham: ");
                 String exprivate = sc.nextLine();

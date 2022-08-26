@@ -1,5 +1,8 @@
 import Entity.*;
 import Interface.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.security.auth.callback.ChoiceCallback;
@@ -10,6 +13,14 @@ import Controller.ProductManage;
 
 public class Main {
 
+    public static Date parseDate(String date) {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
         ArrayList<Officer> listOfficers = new ArrayList<Officer>();
         OfficerManage officerManage = new OfficerManage();
@@ -19,6 +30,28 @@ public class Main {
 
         ArrayList<Bill> listBills = new ArrayList<Bill>();
         BillManage billManage = new BillManage();
+
+        Product p1 = new Product();
+        p1.setId("a1");
+        // Date date1 = parseDate("2019-01-01");
+        p1.setDayInsert(null);
+        p1.setName("milk");
+        p1.setQuantity(2);
+        p1.setExprivate(null);
+        p1.setPrice(10000.0);
+        p1.setCategory("food");
+        listProducts.add(p1);
+
+        Product p2 = new Product();
+        p2.setId("a2");
+        // Date date1 = parseDate("2019-01-01");
+        p2.setDayInsert(null);
+        p2.setName("pizza");
+        p2.setQuantity(4);
+        p2.setExprivate(null);
+        p2.setPrice(50000.0);
+        p2.setCategory("food");
+        listProducts.add(p2);
 
         while (true) {
             System.out.println("============ Main Menu Function =============");
@@ -75,8 +108,8 @@ public class Main {
                                 break;
                             }
                             case 6:
-                                System.exit(0);
-                                break;      
+                                check = false;
+                                break;
                             default: {
                                 System.out.println("Nhap sai, nhap lai: ");
                                 break;
@@ -130,7 +163,8 @@ public class Main {
                                 break;
                             }
                             case 6:
-                                System.exit(0);
+                                // System.exit(0);
+                                check = false;
                                 break;
                             default: {
                                 System.out.println("Nhap sai, nhap lai: ");
@@ -164,11 +198,11 @@ public class Main {
                                 break;
                             }
                             case 2: {
-                                billManage.viewAll(listBills, listProducts);
+                                billManage.viewAll(listBills);
                                 break;
                             }
                             case 3:
-                                System.exit(0);
+                                check = false;
                                 break;
                             default: {
                                 System.out.println("Nhap sai, nhap lai: ");
@@ -179,6 +213,7 @@ public class Main {
                             break;
                         }
                     }
+                    break;
                 }
                 // Function Exit
                 case 4: {
