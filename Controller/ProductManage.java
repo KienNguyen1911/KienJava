@@ -34,7 +34,7 @@ public class ProductManage implements IAction<Product> {
         int quantity = sc.nextInt();
         product.setQuantity(quantity);
         
-
+        sc.nextLine();
         System.out.println("Nhap ngay nhap san pham: ");
         String dayInsert = sc.nextLine();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -122,6 +122,7 @@ public class ProductManage implements IAction<Product> {
         return false;
     }
 
+    // List<Product> products = new ArrayList<Product>();
     @Override
     public boolean delete(ArrayList<Product> list) {
         // TODO Auto-generated method stub
@@ -131,13 +132,11 @@ public class ProductManage implements IAction<Product> {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId().equals(id)) {
                 list.remove(i);
+                System.out.println("Xoa thanh cong");
                 return true;
-            } else {
-                // System.out.println("Ma san pham khong ton tai");
-                return false;
             }
-            // return false;
         }
+        System.out.println("Ma san pham khong ton tai");
         return false;
     }
 
@@ -156,12 +155,8 @@ public class ProductManage implements IAction<Product> {
                 System.out.println("Ngay het han san pham: " + list.get(i).getExprivate());
                 System.out.println("The loai: " + list.get(i).getCategory());
                 return;
-            } else {
-                // System.out.println("Ma san pham khong ton tai");
-                return;
-            }
+            } 
         }
-        // return;
 
     }
 
