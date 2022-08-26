@@ -22,7 +22,7 @@ public class BillManage implements IService<Bill, Product> {
 
         System.out.println("Nhap ma hoa don: ");
         String idBill = sc.nextLine();
-        idBill = sc.nextLine();
+        // idBill = sc.nextLine();
         // while (checkExist(list, idBill)) {
         //     System.out.println("Ma hoa don da ton tai, nhap lai: ");
         //     idBill = sc.nextLine();
@@ -78,6 +78,7 @@ public class BillManage implements IService<Bill, Product> {
 
         Date date = new Date(new java.util.Date().getTime());
         bill.setSaledDate(date);
+        System.out.println("id: " + bill.getIdBill());
         System.out.println("Ngay ban: " + date);
         System.out.println("Tong tien: " + overallPrice);
         
@@ -114,6 +115,7 @@ public class BillManage implements IService<Bill, Product> {
                                          );
                     System.out.println("");
                 }
+                
                 System.out.println("Ngay ban: " + list.get(i).getSaledDate());
                 System.out.println("Tong tien: " + list.get(i).getTotal());
 
