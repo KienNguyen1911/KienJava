@@ -141,17 +141,14 @@ public class Main {
                         switch (choiceProduct) {
                             case 1: {
                                 productManage.add(listProducts);
-                                System.out.println("Them san pham thanh cong !!!");
                                 break;
                             }
                             case 2: {
                                 productManage.edit(listProducts);
-                                System.out.println("Sua san pham thanh cong !!!");
                                 break;
                             }
                             case 3: {
                                 productManage.delete(listProducts);
-                                System.out.println("Xoa san pham thanh cong !!!");
                                 break;
                             }
                             case 4: {

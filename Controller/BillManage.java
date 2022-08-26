@@ -23,10 +23,10 @@ public class BillManage implements IService<Bill, Product> {
         System.out.println("Nhap ma hoa don: ");
         String idBill = sc.nextLine();
         idBill = sc.nextLine();
-        while (checkExist(list, idBill)) {
-            System.out.println("Ma hoa don da ton tai, nhap lai: ");
-            idBill = sc.nextLine();
-        }
+        // while (checkExist(list, idBill)) {
+        //     System.out.println("Ma hoa don da ton tai, nhap lai: ");
+        //     idBill = sc.nextLine();
+        // }
         bill.setIdBill(idBill);
         // Them san pham trong bill
         ArrayList<Product> listProduct = new ArrayList<>();

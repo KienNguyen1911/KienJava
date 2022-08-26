@@ -11,10 +11,9 @@ public class Bill {
 	private Date saledDate;
 	private Staff branch;
 	private ArrayList<Product> product;
-    private int quantityInBill;
 
     public Bill(String idBill, Double total, String customerName, String phone, Date saledDate, Staff branch,
-            ArrayList<Product> product, int quantityInBill) {
+            ArrayList<Product> product) {
         this.idBill = idBill;
         this.total = total;
         this.customerName = customerName;
@@ -22,15 +21,6 @@ public class Bill {
         this.saledDate = saledDate;
         this.branch = branch;
         this.product = product;
-        this.quantityInBill = quantityInBill;
-    }
-
-    public int getQuantityInBill() {
-        return quantityInBill;
-    }
-
-    public void setQuantityInBill(int quantityInBill) {
-        this.quantityInBill = quantityInBill;
     }
 
     public String getIdBill() {
