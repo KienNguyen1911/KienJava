@@ -1,5 +1,6 @@
 package Controller;
 
+import java.rmi.server.SocketSecurityException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,7 +15,6 @@ public class ProductManage implements IAction<Product> {
     public Product add(ArrayList<Product> list) {
         // TODO Auto-generated method stub
         Product product = new Product();
-
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Nhap ma san pham: ");
@@ -33,7 +33,7 @@ public class ProductManage implements IAction<Product> {
         System.out.println("Nhap so luong san pham: ");
         int quantity = sc.nextInt();
         product.setQuantity(quantity);
-        
+
         sc.nextLine();
         System.out.println("Nhap ngay nhap san pham: ");
         String dayInsert = sc.nextLine();
@@ -76,49 +76,68 @@ public class ProductManage implements IAction<Product> {
         String id = sc.nextLine();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId().equals(id)) {
-                System.out.println("Nhap ten san pham: ");
-                String name = sc.nextLine();
-                list.get(i).setName(name);
-                System.out.println("Nhap gia san pham: ");
-                Double price = sc.nextDouble();
-                list.get(i).setPrice(price);
-                System.out.println("Nhap so luong san pham: ");
-                int quantity = sc.nextInt();
-                list.get(i).setQuantity(quantity);
+                System.out.println("1. Sua ten san pham: ");
+                System.out.println("2. Sua gia san pham: ");
+                System.out.println("3. Sua so luong san pham: ");
+                System.out.println("4. Sua ngay nhap san pham: ");
+                System.out.println("5. Sua ngay het han san pham: ");
+                System.out.println("6. Sua the loai: ");
 
-                sc.nextLine();
-                System.out.println("Nhap ngay nhap san pham: ");
-                String dayInsert = sc.nextLine();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                // SimpleDateFormat.parse(dayInsert);
-                Date time1 = null;
-                try {
-                    time1 = new Date(dateFormat.parse(dayInsert).getTime());
-                } catch (Exception e) {
+                boolean check = true;
+                int choice = sc.nextInt();
+                switch(choice) {
+                    case 1:
+                        System.out.println("Nhap ten san pham: ");
+                        String name = sc.next();
+                        list.get(i).setName(name);
+                        break;
+                    case 2:
+                        System.out.println("Nhap gia san pham: ");
+                        Double price = sc.nextDouble();
+                        list.get(i).setPrice(price);
+                        break;
+                    case 3:
+                        System.out.println("Nhap so luong san pham: ");
+                        int quantity = sc.nextInt();
+                        list.get(i).setQuantity(quantity);
+                        break;
+                    case 4:
+                        sc.nextLine();
+                        System.out.println("Nhap ngay nhap san pham: ");
+                        String dayInsert = sc.next();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Date time1 = null;
+                        try {
+                            time1 = new Date(dateFormat.parse(dayInsert).getTime());
+                        } catch (Exception e) {
+                        }
+                        list.get(i).setDayInsert(time1);
+                        break;
+                    case 5:
+                        System.out.println("Nhap ngay het han san pham: ");
+                        String exprivate = sc.next();
+                        SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd/MM/yyyy");
+                        Date time2 = null;
+                        try {
+                            time2 = new Date(dateFormat2.parse(exprivate).getTime());
+                        } catch (Exception e) {}
+                        list.get(i).setExprivate(time2);
+                        break;
+                    case 6:
+                        System.out.println("Nhap the loai: ");
+                        String category = sc.next();
+                        list.get(i).setCategory(category);
+                        break;
+                    default:
+                        check = false;
+                        break;
                 }
-                list.get(i).setDayInsert(time1);
-                // System.out.println("Nhap ngay het han san pham: ");
-                
-                System.out.println("Nhap ngay het han san pham: ");
-                String exprivate = sc.nextLine();
-                SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd/MM/yyyy");
-                Date time2 = null;
-                try {
-                    time2 = new Date(dateFormat2.parse(exprivate).getTime());
-                } catch (Exception e) {}
-                list.get(i).setExprivate(time2);
-
-                System.out.println("Nhap the loai: ");
-                String category = sc.nextLine();
-                list.get(i).setCategory(category);
-
-                return true;
-            } else {
-                // System.out.println("Ma san pham khong ton tai");
-                return false;
+                // return true;
+                if (check == false) {
+                    break;
+                }
             }
         }
-        // return false;
         return false;
     }
 
@@ -155,7 +174,7 @@ public class ProductManage implements IAction<Product> {
                 System.out.println("Ngay het han san pham: " + list.get(i).getExprivate());
                 System.out.println("The loai: " + list.get(i).getCategory());
                 return;
-            } 
+            }
         }
 
     }
@@ -189,5 +208,7 @@ public class ProductManage implements IAction<Product> {
         }
         return false;
     }
+    // array [1,2,3,4,5,6]
+    // 1 = index 0
 
 }
