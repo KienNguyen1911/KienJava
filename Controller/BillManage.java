@@ -3,6 +3,9 @@ package Controller;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.IntFunction;
+
+import javax.lang.model.util.ElementScanner14;
 
 import Entity.Bill;
 import Entity.Product;
@@ -21,12 +24,12 @@ public class BillManage implements IService<Bill, Product> {
         Double overallPrice = 0.0d;
 
         System.out.println("Nhap ma hoa don: ");
-        String idBill = sc.nextLine();
+        String idBill = sc.nextLine(); // nextLine() to next()
         // idBill = sc.nextLine();
-        // while (checkExist(list, idBill)) {
-        //     System.out.println("Ma hoa don da ton tai, nhap lai: ");
-        //     idBill = sc.nextLine();
-        // }
+        while (checkExist(list, idBill)) {
+            System.out.println("Ma hoa don da ton tai, nhap lai: ");
+            idBill = sc.nextLine();
+        }
         bill.setIdBill(idBill);
         // Them san pham trong bill
         ArrayList<Product> listProduct = new ArrayList<>();
@@ -47,7 +50,7 @@ public class BillManage implements IService<Bill, Product> {
             System.out.println("Ban da chon san pham: " + product.getName());
             System.out.println("Gia san pham: " + product.getPrice());
 
-            // nhap so luong san pham trong bill 
+            // nhap so luong san pham trong bill
             System.out.println("Nhap so luong: ");
             int quantity = sc.nextInt();
             product.setQuantity(quantity);
@@ -81,7 +84,7 @@ public class BillManage implements IService<Bill, Product> {
         System.out.println("id: " + bill.getIdBill());
         System.out.println("Ngay ban: " + date);
         System.out.println("Tong tien: " + overallPrice);
-        
+
         list.add(bill);
         return bill;
 
@@ -94,31 +97,16 @@ public class BillManage implements IService<Bill, Product> {
         if (list.size() == 0) {
             System.out.println("Khong co hoa don nao");
         } else {
+            System.out.println("========================================================================");
+            System.out.printf("|%10s |%20s |%10s |%10s", "idBill", "Ten Khach Hang", "Ngay Ban", "Tong Tien");
             for (int i = 0; i < list.size(); i++) {
                 System.out.println("");
-                System.out.println("========================================================================");
-                System.out.println("Ma hoa don: " + list.get(i).getIdBill());
-                System.out.println("Ten khach hang: " + list.get(i).getCustomerName());
-                System.out.println("Ten chi nhanh: " + list.get(i).getBranch().getBranch());
-                System.out.println("==============================");
+                System.out.printf("|%10s |%20s |%10s |%10s",
+                        list.get(i).getIdBill(),
+                        list.get(i).getCustomerName(),
+                        list.get(i).getSaledDate(),
+                        list.get(i).getTotal());
                 System.out.println("");
-                System.out.println("Danh sach san pham: ");
-                System.out.printf("%10s %20s %10s %10s" , "ID"  , "Name"  , "Price"  , "Quantity" );
-                for (int j = 0; j < list.get(i).getProduct().size() ; j++) {
-                    // listProducts = list.get(i).getProduct().get(j);
-                    System.out.println("");
-                    System.out.printf("%10s %20s %10s %10s" , 
-                                         list.get(i).getProduct().get(j).getId() , 
-                                         list.get(i).getProduct().get(j).getName() , 
-                                         list.get(i).getProduct().get(j).getPrice() , 
-                                         list.get(i).getProduct().get(j).getQuantity()  
-                                         );
-                    System.out.println("");
-                }
-                
-                System.out.println("Ngay ban: " + list.get(i).getSaledDate());
-                System.out.println("Tong tien: " + list.get(i).getTotal());
-
             }
         }
     }
@@ -134,7 +122,6 @@ public class BillManage implements IService<Bill, Product> {
         return null;
     }
 
-    
     @Override
     public boolean checkExist(ArrayList<Bill> list, String id) {
         // TODO Auto-generated method stub
@@ -167,7 +154,34 @@ public class BillManage implements IService<Bill, Product> {
     @Override
     public void searchById(ArrayList<Bill> list) {
         // TODO Auto-generated method stub
-        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nhap ma hoa don: ");
+        String id = sc.nextLine();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getIdBill().equals(id)) {
+                System.out.println("========================================================================");
+                System.out.println("Ma hoa don: " + list.get(i).getIdBill());
+                System.out.println("Ten khach hang: " + list.get(i).getCustomerName());
+                System.out.println("Ten chi nhanh: " + list.get(i).getBranch().getBranch());
+                System.out.println("==============================");
+                System.out.println("");
+                System.out.println("Danh sach san pham: ");
+                System.out.printf("%10s %20s %10s %10s", "ID", "Name", "Price", "Quantity");
+                for (int j = 0; j < list.get(i).getProduct().size(); j++) {
+                    // listProducts = list.get(i).getProduct().get(j);
+                    System.out.println("");
+                    System.out.printf("%10s %20s %10s %10s",
+                            list.get(i).getProduct().get(j).getId(),
+                            list.get(i).getProduct().get(j).getName(),
+                            list.get(i).getProduct().get(j).getPrice(),
+                            list.get(i).getProduct().get(j).getQuantity());
+                    System.out.println("");
+                }
+
+                System.out.println("Ngay ban: " + list.get(i).getSaledDate());
+                System.out.println("Tong tien: " + list.get(i).getTotal());
+            }
+        }
     }
 
 }
