@@ -53,6 +53,15 @@ public class Main {
         p2.setCategory("food");
         listProducts.add(p2);
 
+        Officer o1 = new Officer();
+        o1.setId("b1");
+        o1.setFullname("Nguyen Van A");
+        o1.setAge(20);
+        o1.setAddress("Ha Noi");
+        o1.setPhone("0123456789");
+        o1.setEmail("a@123");
+        listOfficers.add(o1);
+        
         while (true) {
             System.out.println("============ Main Menu Function =============");
             System.out.println("1. Officer Manage");
@@ -86,17 +95,14 @@ public class Main {
                         switch (choiceOfficer) {
                             case 1: {
                                 officerManage.add(listOfficers);
-                                System.out.println("Them nhan vien thanh cong !!!");
                                 break;
                             }
                             case 2: {
                                 officerManage.edit(listOfficers);
-                                System.out.println("Sua nhan vien thanh cong !!!");
                                 break;
                             }
                             case 3: {
                                 officerManage.delete(listOfficers);
-                                System.out.println("Xoa nhan vien thanh cong !!!");
                                 break;
                             }
                             case 4: {
@@ -184,7 +190,8 @@ public class Main {
                         System.out.println("============ Bill Manage =============");
                         System.out.println("1. Add Bill");
                         System.out.println("2. View ALL Bill");
-                        System.out.println("3. Back to main menu");
+                        System.out.println("3. Search Bill");
+                        System.out.println("4. Back to main menu");
                         System.out.println("=======================================");
                         System.out.println("Nhap vao lua chon cua ban: ");
                         choiceBill = sc.nextInt();
@@ -199,6 +206,9 @@ public class Main {
                                 break;
                             }
                             case 3:
+                                billManage.searchById(listBills);
+                                break;
+                            case 4:
                                 check = false;
                                 break;
                             default: {
